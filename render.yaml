@@ -10,21 +10,18 @@ services:
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
-      - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: biomarketplace-db
-          property: connectionString
-      - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: biomarketplace-db
-          property: user
-      - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: biomarketplace-db
-          property: password
+      - key: DATABASE_HOST
+        value: mysql.render.com
+      - key: DATABASE_PORT
+        value: 3306
+      - key: DATABASE_NAME
+        value: biomarketplace
+      - key: DATABASE_USERNAME
+        value: bio_user
+      - key: DATABASE_PASSWORD
+        generateValue: true
 
 databases:
-  - name: biomarketplace-db
-    databaseName: biomarketplace
-    user: postgres
+  - name: biomarketplace-mysql
+    type: mysql
     plan: free
