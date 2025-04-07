@@ -5,6 +5,8 @@ services:
     repo: https://github.com/Kitasurfer/biomarketplace-backend
     branch: main
     dockerfilePath: ./Dockerfile
+    buildCommand: ""
+    startCommand: ""
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
