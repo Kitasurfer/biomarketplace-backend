@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: biomarketplace-backend
+    env: docker
+    repo: https://github.com/Kitasurfer/biomarketplace-backend
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: biomarketplace-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: biomarketplace-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: biomarketplace-db
+          property: password
+
+databases:
+  - name: biomarketplace-db
+    databaseName: biomarketplace
+    user: postgres
+    plan: free
